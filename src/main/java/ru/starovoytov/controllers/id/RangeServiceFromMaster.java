@@ -14,8 +14,9 @@ public class RangeServiceFromMaster implements RangeServiceInterface {
 	@Override
 	public Range getNewRang() {
 		Range range = new Range();
-		range.setMax(2);
-		range.setStart(0);
+		long threadParam = (Thread.currentThread().getId() + 1) * 1_000;
+		range.setMax(3 * threadParam);
+		range.setStart(1 * threadParam);
 		return range;
 	}
 }

@@ -50,7 +50,7 @@ class ApplicationTest {
 			sender.join();
 		}
 
-		assertEquals(3, idCollection.size());
+		assertEquals(THREAD_COUNT * GET_REQUEST_COUNT, idCollection.size());
 	}
 
 	/**

@@ -20,10 +20,15 @@ public class GetIdController {
 
 	@Autowired
 	@Qualifier("IdGenerator")
-	private IdGenerator idGenerator;
+	private ThreadLocal<IdGenerator> idGenerator;
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseObject helloGradle() {
-		return new ResponseObject(idGenerator.getNewId());
+		IdGenerator generator = idGenerator.get();
+		if (generator == null) {
+			generator = new IdGenerator();
+			idGenerator.set(generator);
+		}
+		return new ResponseObject(generator.getNewId());
 	}
 }

@@ -1,7 +1,6 @@
 package ru.starovoytov.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import ru.starovoytov.controllers.id.RangeServiceFromMaster;
 
 /**
  * Генератор ID
@@ -13,9 +12,7 @@ public class IdGenerator {
 	private long currentId = 1;
 	private long maxId = 0;
 
-	@Autowired
-	@Qualifier("RangeService")
-	private RangeServiceInterface rangeService;
+	private RangeServiceInterface rangeService = new RangeServiceFromMaster();
 
 	/**
 	 * Получить новый id

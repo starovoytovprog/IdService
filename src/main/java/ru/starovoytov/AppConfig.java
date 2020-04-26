@@ -14,16 +14,10 @@ import ru.starovoytov.controllers.id.RangeServiceFromMaster;
  */
 @Configuration
 public class AppConfig {
-	private IdGenerator idGenerator = new IdGenerator();
 	private RangeServiceInterface rangeServiceInterface = new RangeServiceFromMaster();
 
 	@Bean(name = "IdGenerator")
-	public IdGenerator getIdGenerator() {
-		return idGenerator;
-	}
-
-	@Bean(name = "RangeService")
-	public RangeServiceInterface getRangeService() {
-		return rangeServiceInterface;
+	public ThreadLocal<IdGenerator> getIdGenerator() {
+		return new ThreadLocal<>();
 	}
 }
