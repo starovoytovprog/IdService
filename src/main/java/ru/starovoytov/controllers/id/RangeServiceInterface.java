@@ -1,4 +1,6 @@
-package ru.starovoytov.controllers;
+package ru.starovoytov.controllers.id;
+
+import ru.starovoytov.controllers.Range;
 
 /**
  * Интерфейс сервиса получения диапазона

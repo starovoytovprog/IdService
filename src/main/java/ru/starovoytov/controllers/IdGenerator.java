@@ -1,6 +1,7 @@
 package ru.starovoytov.controllers;
 
 import ru.starovoytov.controllers.id.RangeServiceFromMaster;
+import ru.starovoytov.controllers.id.RangeServiceInterface;
 
 /**
  * Генератор ID
