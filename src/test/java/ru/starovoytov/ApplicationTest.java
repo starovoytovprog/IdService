@@ -1,12 +1,12 @@
 package ru.starovoytov;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.core.env.ConfigurableEnvironment;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.starovoytov.controllers.id.ResponseObject;
 
@@ -32,12 +32,18 @@ class ApplicationTest {
 	@Autowired
 	private MockMvc mvc;
 
+	@LocalServerPort
+	private int port;
+
+	@Autowired
+	private ConfigurableEnvironment env;
+
 	private static final int THREAD_COUNT = 100;
 	private static final int GET_REQUEST_COUNT = 1_000;
 
 	@Test
-	@Disabled
 	public void testGetController() throws Exception {
+		env.getSystemProperties().put("range.server.address", "http://localhost:" + port + "/getRange");
 		List<GetIdSender> senders = new ArrayList<>();
 		final Set<Long> idCollection = Collections.synchronizedSet(new HashSet<>());
 
