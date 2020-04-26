@@ -22,11 +22,15 @@ public class GetIdController {
 	@Qualifier("IdGenerator")
 	private ThreadLocal<IdGenerator> idGenerator;
 
+	@Autowired
+	@Qualifier("RangeServer")
+	private String rangeServer;
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseObject helloGradle() {
 		IdGenerator generator = idGenerator.get();
 		if (generator == null) {
-			generator = new IdGenerator();
+			generator = new IdGenerator(rangeServer);
 			idGenerator.set(generator);
 		}
 		return new ResponseObject(generator.getNewId());

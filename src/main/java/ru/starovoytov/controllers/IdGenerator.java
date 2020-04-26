@@ -13,7 +13,11 @@ public class IdGenerator {
 	private long currentId = 1;
 	private long maxId = 0;
 
-	private RangeServiceInterface rangeService = new RangeServiceFromMaster();
+	private final RangeServiceInterface rangeService;
+
+	public IdGenerator(String rangeServer) {
+		rangeService = new RangeServiceFromMaster(rangeServer);
+	}
 
 	/**
 	 * Получить новый id

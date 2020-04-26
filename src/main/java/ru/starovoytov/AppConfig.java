@@ -2,9 +2,8 @@ package ru.starovoytov;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import ru.starovoytov.controllers.IdGenerator;
-import ru.starovoytov.controllers.id.RangeServiceFromMaster;
-import ru.starovoytov.controllers.id.RangeServiceInterface;
 
 /**
  * Конфигуратор приложения
@@ -13,11 +12,15 @@ import ru.starovoytov.controllers.id.RangeServiceInterface;
  * @since 2020.04.26
  */
 @Configuration
+@Profile("default")
 public class AppConfig {
-	private RangeServiceInterface rangeServiceInterface = new RangeServiceFromMaster();
-
 	@Bean(name = "IdGenerator")
 	public ThreadLocal<IdGenerator> getIdGenerator() {
 		return new ThreadLocal<>();
+	}
+
+	@Bean(name = "RangeServer")
+	public String getRangeServer() {
+		return "http://localhost:8080/getRange";
 	}
 }

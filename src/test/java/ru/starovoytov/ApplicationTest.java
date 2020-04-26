@@ -1,6 +1,8 @@
 package ru.starovoytov;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -30,10 +32,11 @@ class ApplicationTest {
 	@Autowired
 	private MockMvc mvc;
 
-	private static final int THREAD_COUNT = 10;
-	private static final int GET_REQUEST_COUNT = 10;
+	private static final int THREAD_COUNT = 100;
+	private static final int GET_REQUEST_COUNT = 1_000;
 
 	@Test
+	@Disabled
 	public void testGetController() throws Exception {
 		List<GetIdSender> senders = new ArrayList<>();
 		final Set<Long> idCollection = Collections.synchronizedSet(new HashSet<>());
