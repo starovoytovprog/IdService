@@ -1,4 +1,4 @@
-package ru.starovoytov;
+package ru.starovoytov.controllers.id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ru.starovoytov.controllers.IdGenerator;
 
 /**
  * Контроллер для получения id

@@ -1,4 +1,4 @@
-package ru.starovoytov;
+package ru.starovoytov.controllers.id;
 
 /**
  * Ответ сервиса
@@ -11,6 +11,12 @@ public class ResponseObject {
 	 * Сгенерированный ID
 	 */
 	long id;
+
+	/**
+	 * Конструктор объекта по умолчанию
+	 */
+	public ResponseObject() {
+	}
 
 	/**
 	 * Конструктор объекта
