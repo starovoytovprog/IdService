@@ -18,12 +18,12 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("getRange")
 public class GetRangeService {
 	private static final long RANGE_SIZE = 1_000;
-	private AtomicLong currentValue = new AtomicLong(Long.MIN_VALUE);
+	private AtomicLong currentValue = new AtomicLong(1);
 
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public Range helloGradle() {
 		Range newRange = new Range();
-		long localValue = currentValue.addAndGet(RANGE_SIZE + 1);
+		long localValue = currentValue.getAndAdd(RANGE_SIZE + 1);
 		newRange.setStart(localValue);
 		newRange.setMax(localValue + RANGE_SIZE);
 		return newRange;
